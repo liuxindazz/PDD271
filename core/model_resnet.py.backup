@@ -1,0 +1,82 @@
+from torch import nn
+import torch
+import torch.nn.functional as F
+from core import resnet
+import numpy as np
+
+class Spatial_attention(nn.Module):
+    """
+    Attention Network.
+    """
+
+    def __init__(self,feature_map,K = 512):
+        """
+        :param feature_map: feature map in level L
+        :param decoder_dim: size of decoder's RNN
+        """
+        super(Spatial_attention, self).__init__()
+        _,C,H,W = tuple([int(x) for x in feature_map])
+        self.W_s = nn.Parameter(torch.randn(C,K))
+        self.bs = nn.Parameter(torch.randn(K))
+        self.bi = nn.Parameter(torch.randn(1))
+        self.tanh = nn.Tanh()
+        self.softmax = nn.Softmax(dim = 0)  # softmax layer to calculate weights
+        
+    def forward(self, feature_map):
+        """
+        Forward propagation.
+        :param feature_map: feature map in level L(batch_size, C, H, W)
+        :param decoder_hidden: previous decoder output, a tensor of dimension (batch_size, decoder_dim)
+        :return: alpha
+        """
+        V_map = feature_map.view(feature_map.shape[0],2048,-1) 
+        V_map = V_map.permute(0,2,1)#(batch_size,W*H,C)
+        # print(V_map.shape)
+        # print("m1",torch.matmul(V_map,self.W_s).shape)
+        # print("m2",torch.matmul(decoder_hidden,self.W_hs).shape)
+        att = self.tanh((torch.matmul(V_map,self.W_s)+self.bs))# + (torch.matmul(decoder_hidden,self.W_hs).unsqueeze(1)))#(batch_size,W*H,C)
+        # print("att",att.shape)
+        alpha = self.softmax(torch.matmul(att,self.W_i) + self.bi)
+#         print("alpha",alpha.shape)
+        alpha = alpha.squeeze(2)
+        feature_map = feature_map.view(feature_map.shape[0],2048,-1) 
+        # print("feature_map",feature_map.shape)
+        # print("alpha",alpha.shape)
+        temp_alpha = alpha.unsqueeze(1)
+        attention_weighted_encoding = torch.mul(feature_map,temp_alpha)
+        return attention_weighted_encoding,alpha
+
+
+
+# class model_fusion(nn.Module):
+#     def __init__(self):
+#         super(model_fusion, self).__init__()
+#         # self.pretrained_model = resnet.resnet50(pretrained=True)
+#         self.pretrained_model = resnet.resnet152(pretrained=True)
+#         self.pretrained_model.avgpool = nn.AdaptiveAvgPool2d(1)
+#         self.pretrained_model.fc = nn.Linear(512 * 4, 200)
+
+
+#     def forward(self, x):
+#         model_out, feature_1, feature_2, feature_3, feature_4 = self.pretrained_model(x)
+
+#         feature_map = torch.cat((feature1,feature2,feature3),dim=1)
+
+#         feature2 = F.interpolate(feature2, size=feature1.shape, mode='bilinear')
+
+#         feature_mean = torch.mean(feature_map,dim=1)
+
+
+#         mask = torch.gt(feature_map, feature_mean)
+
+#         out = feature_map + self.sigma * feature_att_filter_map
+
+if __name__ == '__main__':
+    feature_map = torch.randn([4,3,224,224])
+    model = Spatial_attention(feature_map)
+
+    out,aa = model(feature_map)
+
+
+
+
