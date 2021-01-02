@@ -4,7 +4,7 @@ This is a Python3 / Pytorch implementation of PDD271, as described in the follow
 **Plant Disease Recognition:A Large-Scale Benchmark Dataset and a Visual Region and Loss Reweighting Approach**, by
 Xinda Liu, Weiqing Min, Shuhuan Mei, Lili Wang, and Shuqiang Jiang
 
-which has been accepted by IEEE Transactions on Image Processing as a regular paper.
+which has been accepted by IEEE Transactions on Image Processing as a regular paper.  
 To facilitate the plant disease recognition research, we construct a new large-scale plant disease dataset with 271 plant disease
 categories and 220,592 images. Based on this dataset, we tackle plant disease recognition via reweighting both visual regions
 and loss to emphasize diseased parts.
