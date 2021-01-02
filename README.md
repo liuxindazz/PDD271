@@ -13,8 +13,11 @@ Disease leaf image samples from various categories of PDD271 (one samples per ca
 Fruit Tree, Vegetable, and Field Crops.
 
 ## Dataset Sample
-The PDD271 dataset belongs to the Beijing Puhui Sannong Technology Co., Ltd. We will try to promote this project's release progressively to facilitate the interdisciplinary research in the image processing and agricultural field, especially the development of plant disease recognition.
-The dataset sample is shown in folder Sample.
+The PDD271 dataset belongs to the [Beijing Puhui Sannong Technology Co. Ltd.](https://www.aiphsn.com/)
+You can download the dataset sample in 
+url: https://pan.baidu.com/s/1IuBMf87L92oGJ6xA3rVAHQ 
+Extraction code: qex3 
+
 
 ## Environment Setting
 
