@@ -15,8 +15,7 @@ Fruit Tree, Vegetable, and Field Crops.
 ## Dataset Sample
 The PDD271 dataset belongs to the [Beijing Puhui Sannong Technology Co. Ltd.](https://www.aiphsn.com/)  
 You can download the dataset sample in   
-url: https://pan.baidu.com/s/1IuBMf87L92oGJ6xA3rVAHQ   
-Extraction code: qex3 
+url: https://drive.google.com/file/d/1QMR1bUfEuMbZz-Mb3u2IXdbMgz7oj2Pe/view?usp=sharing
 
 
 ## Environment Setting
