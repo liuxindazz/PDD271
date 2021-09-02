@@ -12,21 +12,10 @@ and loss to emphasize diseased parts.
 Disease leaf image samples from various categories of PDD271 (one samples per category). The dataset contains three macro-classes:
 Fruit Tree, Vegetable, and Field Crops.
 
+Due to the company's policy restrictions, we cannot open source pre-trained models and related codes, and can only open source a part of the data set for everyone to use. 
+
 ## Dataset Sample
 The PDD271 dataset belongs to the [Beijing Puhui Sannong Technology Co. Ltd.](https://www.aiphsn.com/)  
 You can download the dataset sample in   
 url: https://drive.google.com/file/d/1QMR1bUfEuMbZz-Mb3u2IXdbMgz7oj2Pe/view?usp=sharing
 
-
-## Environment Setting
-
-To run this code you need the following: 
-+ a machine with multiple GPUs
-+ Python3
-+ other packages:   
-`pip install -r requirements.txt`
-
-## Testing the model
-
-Use the `test.py` script to test the pretrained model.    
-  `python3 test.py`
